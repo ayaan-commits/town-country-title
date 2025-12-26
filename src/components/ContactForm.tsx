@@ -42,16 +42,16 @@ export default function ContactForm() {
 
   if (submitStatus === 'success') {
     return (
-      <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="bg-dark-900 rounded-2xl border border-dark-700 p-8 text-center">
+        <div className="w-16 h-16 bg-accent-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-heading font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-heading font-bold text-white mb-2">
           Message Sent!
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-400 mb-6">
           Thank you for reaching out. We&apos;ll get back to you within 24 hours.
         </p>
         <button
@@ -66,13 +66,13 @@ export default function ContactForm() {
 
   return (
     <div>
-      <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+      <h2 className="text-2xl font-heading font-bold text-white mb-6">
         Send Us a Message
       </h2>
 
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-700 text-sm">
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+          <p className="text-red-400 text-sm">
             Something went wrong. Please try again or call us directly.
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function ContactForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="firstName" className="label-dark">
               First Name *
             </label>
             <input
@@ -92,11 +92,11 @@ export default function ContactForm() {
               id="firstName"
               name="firstName"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="lastName" className="label-dark">
               Last Name *
             </label>
             <input
@@ -104,13 +104,13 @@ export default function ContactForm() {
               id="lastName"
               name="lastName"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="label-dark">
             Email Address *
           </label>
           <input
@@ -118,31 +118,31 @@ export default function ContactForm() {
             id="email"
             name="email"
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" className="label-dark">
             Phone Number
           </label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           />
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="subject" className="label-dark">
             Subject *
           </label>
           <select
             id="subject"
             name="subject"
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           >
             <option value="">Select a subject</option>
             <option value="Request a Quote">Request a Quote</option>
@@ -154,7 +154,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="message" className="label-dark">
             Message *
           </label>
           <textarea
@@ -162,7 +162,7 @@ export default function ContactForm() {
             name="message"
             rows={5}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
             placeholder="How can we help you?"
           ></textarea>
         </div>
@@ -170,7 +170,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary btn-glow w-full disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">

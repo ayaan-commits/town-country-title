@@ -77,7 +77,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logos/logo-square.svg" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#1e40af" />
+        <meta name="theme-color" content="#0f0f0f" />
         <LocalBusinessSchema />
         <WebsiteSchema />
       </head>

@@ -44,16 +44,16 @@ export default function QuoteForm() {
 
   if (submitStatus === 'success') {
     return (
-      <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="bg-dark-900 rounded-2xl border border-dark-700 p-8 text-center">
+        <div className="w-16 h-16 bg-accent-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-8 h-8 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-heading font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-heading font-bold text-white mb-2">
           Quote Request Received!
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-400 mb-6">
           Thank you for your interest. We&apos;ll review your information and send you a detailed quote within 24 hours.
         </p>
         <button
@@ -67,14 +67,14 @@ export default function QuoteForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8">
-      <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6">
+    <div className="bg-dark-900 rounded-2xl border border-dark-700 p-8">
+      <h2 className="text-2xl font-heading font-bold text-white mb-6">
         Request Your Quote
       </h2>
 
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-700 text-sm">
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+          <p className="text-red-400 text-sm">
             Something went wrong. Please try again or call us directly.
           </p>
         </div>
@@ -86,7 +86,7 @@ export default function QuoteForm() {
 
         {/* Transaction Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             Transaction Type *
           </label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -97,10 +97,10 @@ export default function QuoteForm() {
             ].map((option) => (
               <label
                 key={option.value}
-                className={`relative flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                className={`relative flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all duration-300 ${
                   selectedTransaction === option.value
-                    ? 'border-primary-500 bg-primary-50'
-                    : 'border-gray-200 hover:border-primary-300'
+                    ? 'border-accent-500 bg-accent-500/10 shadow-glow'
+                    : 'border-dark-700 hover:border-accent-500/50 bg-dark-800'
                 }`}
               >
                 <input
@@ -113,7 +113,7 @@ export default function QuoteForm() {
                 />
                 <div className="flex items-center gap-3">
                   <div className="text-2xl">{option.icon}</div>
-                  <span className="font-medium">{option.label}</span>
+                  <span className="font-medium text-white">{option.label}</span>
                 </div>
               </label>
             ))}
@@ -122,14 +122,14 @@ export default function QuoteForm() {
 
         {/* Property Type */}
         <div>
-          <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="propertyType" className="label-dark">
             Property Type *
           </label>
           <select
             id="propertyType"
             name="propertyType"
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           >
             <option value="">Select property type</option>
             <option value="Single Family Home">Single Family Home</option>
@@ -144,7 +144,7 @@ export default function QuoteForm() {
         {/* Property Value & Loan Amount */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="propertyValue" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="propertyValue" className="label-dark">
               Property Value/Purchase Price *
             </label>
             <div className="relative">
@@ -155,12 +155,12 @@ export default function QuoteForm() {
                 name="propertyValue"
                 required
                 placeholder="300,000"
-                className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="input-dark pl-8"
               />
             </div>
           </div>
           <div>
-            <label htmlFor="loanAmount" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="loanAmount" className="label-dark">
               Loan Amount (if applicable)
             </label>
             <div className="relative">
@@ -170,7 +170,7 @@ export default function QuoteForm() {
                 id="loanAmount"
                 name="loanAmount"
                 placeholder="240,000"
-                className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="input-dark pl-8"
               />
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function QuoteForm() {
 
         {/* Property Address */}
         <div>
-          <label htmlFor="propertyAddress" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="propertyAddress" className="label-dark">
             Property Address
           </label>
           <input
@@ -186,20 +186,20 @@ export default function QuoteForm() {
             id="propertyAddress"
             name="propertyAddress"
             placeholder="123 Main Street, Miami, FL 33101"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           />
         </div>
 
         {/* County */}
         <div>
-          <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="county" className="label-dark">
             Florida County *
           </label>
           <select
             id="county"
             name="county"
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           >
             <option value="">Select county</option>
             <option value="Miami-Dade County">Miami-Dade County</option>
@@ -211,14 +211,14 @@ export default function QuoteForm() {
           </select>
         </div>
 
-        <hr className="my-8" />
+        <hr className="border-dark-700 my-8" />
 
         {/* Contact Information */}
-        <h3 className="text-lg font-bold text-gray-900">Your Contact Information</h3>
+        <h3 className="text-lg font-bold text-white">Your Contact Information</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="firstName" className="label-dark">
               First Name *
             </label>
             <input
@@ -226,11 +226,11 @@ export default function QuoteForm() {
               id="firstName"
               name="firstName"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="lastName" className="label-dark">
               Last Name *
             </label>
             <input
@@ -238,14 +238,14 @@ export default function QuoteForm() {
               id="lastName"
               name="lastName"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="label-dark">
               Email Address *
             </label>
             <input
@@ -253,11 +253,11 @@ export default function QuoteForm() {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="label-dark">
               Phone Number *
             </label>
             <input
@@ -265,20 +265,20 @@ export default function QuoteForm() {
               id="phone"
               name="phone"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="input-dark"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="role" className="label-dark">
             I am a *
           </label>
           <select
             id="role"
             name="role"
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           >
             <option value="">Select your role</option>
             <option value="Buyer">Buyer</option>
@@ -291,7 +291,7 @@ export default function QuoteForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="message" className="label-dark">
             Additional Notes
           </label>
           <textarea
@@ -299,14 +299,14 @@ export default function QuoteForm() {
             name="message"
             rows={3}
             placeholder="Any additional information about your transaction..."
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="input-dark"
           ></textarea>
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary btn-glow w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
