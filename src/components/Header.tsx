@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { companyInfo } from '@/data/company';
-import ThemeToggle from './ThemeToggle';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -33,7 +32,7 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
+    <header className="bg-white shadow-md sticky top-0 z-50">
       {/* Top bar with contact info */}
       <div className="bg-primary-500 text-white text-sm py-2">
         <div className="container-custom flex justify-between items-center">
@@ -51,12 +50,8 @@ export default function Header() {
               {companyInfo.email}
             </a>
           </div>
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden sm:block">
             <span>Serving All 67 Florida Counties</span>
-            <ThemeToggle />
-          </div>
-          <div className="sm:hidden">
-            <ThemeToggle />
           </div>
         </div>
       </div>
@@ -71,7 +66,7 @@ export default function Header() {
             </div>
             <div className="hidden sm:block">
               <div className="font-heading text-xl font-bold text-primary-500">Town & Country</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Title Guaranty</div>
+              <div className="text-sm text-gray-600">Title Guaranty</div>
             </div>
           </Link>
 
@@ -86,7 +81,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-primary-500 font-medium transition-colors flex items-center gap-1"
+                  className="text-gray-700 hover:text-primary-500 font-medium transition-colors flex items-center gap-1"
                 >
                   {item.name}
                   {item.submenu && (
@@ -98,12 +93,12 @@ export default function Header() {
 
                 {/* Dropdown menu */}
                 {item.submenu && activeDropdown === item.name && (
-                  <div className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-lg rounded-lg py-2 min-w-[200px] border dark:border-gray-700">
+                  <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 min-w-[200px] border">
                     {item.submenu.map((subitem) => (
                       <Link
                         key={subitem.name}
                         href={subitem.href}
-                        className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-gray-700 hover:text-primary-500 transition-colors"
+                        className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-500 transition-colors"
                       >
                         {subitem.name}
                       </Link>
@@ -123,7 +118,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 text-gray-700 dark:text-gray-300"
+            className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -141,12 +136,12 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t dark:border-gray-700 pt-4">
+          <div className="lg:hidden mt-4 pb-4 border-t pt-4">
             {navigation.map((item) => (
               <div key={item.name}>
                 <Link
                   href={item.href}
-                  className="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 font-medium"
+                  className="block py-2 text-gray-700 hover:text-primary-500 font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -157,7 +152,7 @@ export default function Header() {
                       <Link
                         key={subitem.name}
                         href={subitem.href}
-                        className="block py-2 text-gray-600 dark:text-gray-400 hover:text-primary-500 text-sm"
+                        className="block py-2 text-gray-600 hover:text-primary-500 text-sm"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {subitem.name}
