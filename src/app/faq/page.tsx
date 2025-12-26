@@ -131,13 +131,19 @@ export default function FAQPage() {
       <FAQSchema faqs={allFaqs} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-500 to-primary-700 text-white py-16">
-        <div className="container-custom">
+      <section className="relative py-16 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950" />
+
+        {/* Gold Accent Orbs */}
+        <div className="absolute top-10 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl" />
+
+        <div className="container-custom relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-white animate-fade-in-up">
               Frequently Asked Questions
             </h1>
-            <p className="text-xl text-primary-100">
+            <p className="text-xl text-gray-300 animate-fade-in-up">
               Get answers to common questions about title insurance, title searches,
               and the closing process in Florida.
             </p>
@@ -146,24 +152,27 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16">
+      <section className="py-16 bg-dark-950">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             {faqCategories.map((category, categoryIndex) => (
               <div key={categoryIndex} className="mb-12">
-                <h2 className="text-2xl font-heading font-bold text-gray-900 mb-6 pb-2 border-b-2 border-primary-500">
+                <h2 className="text-2xl font-heading font-bold text-white mb-6 pb-2 border-b-2 border-accent-500/50">
                   {category.name}
                 </h2>
                 <div className="space-y-4">
                   {category.faqs.map((faq, faqIndex) => (
-                    <details key={faqIndex} className="card group">
-                      <summary className="flex justify-between items-center cursor-pointer list-none font-medium text-lg text-gray-900">
+                    <details
+                      key={faqIndex}
+                      className="group bg-dark-900 border border-dark-800 rounded-xl p-5 hover:border-accent-500/30 transition-all duration-300"
+                    >
+                      <summary className="flex justify-between items-center cursor-pointer list-none font-medium text-lg text-white">
                         {faq.question}
-                        <svg className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-accent-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </summary>
-                      <p className="mt-4 text-gray-600 leading-relaxed">
+                      <p className="mt-4 text-gray-400 leading-relaxed">
                         {faq.answer}
                       </p>
                     </details>
@@ -175,19 +184,25 @@ export default function FAQPage() {
 
           {/* CTA */}
           <div className="max-w-4xl mx-auto mt-12 text-center">
-            <div className="bg-primary-50 rounded-2xl p-8">
-              <h2 className="text-2xl font-heading font-bold text-gray-900 mb-4">
+            <div className="bg-gradient-to-br from-accent-500 to-accent-600 text-dark-950 rounded-2xl p-8 shadow-glow">
+              <h2 className="text-2xl font-heading font-bold mb-4">
                 Still Have Questions?
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-dark-950/80 mb-6">
                 Our team of title insurance experts is here to help. Contact us for personalized
                 answers to your specific questions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact/" className="btn-primary">
+                <Link
+                  href="/contact/"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-dark-950 text-white font-bold rounded-lg hover:bg-dark-900 transition-all duration-300 shadow-lg"
+                >
                   Contact Us
                 </Link>
-                <Link href="/quote/" className="btn-secondary">
+                <Link
+                  href="/quote/"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-dark-950 text-dark-950 font-bold rounded-lg hover:bg-dark-950/10 transition-all duration-300"
+                >
                   Get a Free Quote
                 </Link>
               </div>
