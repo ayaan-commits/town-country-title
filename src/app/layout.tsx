@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
 import { LocalBusinessSchema, WebsiteSchema } from '@/components/SchemaMarkup';
 import { companyInfo } from '@/data/company';
 
@@ -73,20 +74,35 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        {/* Preconnect for external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.web3forms.com" />
+        <link rel="dns-prefetch" href="https://api.web3forms.com" />
+
+        {/* Favicons */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logos/logo-square.svg" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0f0f0f" />
+
+        {/* Schema markup */}
         <LocalBusinessSchema />
         <WebsiteSchema />
       </head>
       <body className="min-h-screen flex flex-col">
+        {/* Skip to main content for accessibility */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+
         <Header />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow" role="main">
           {children}
         </main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );
