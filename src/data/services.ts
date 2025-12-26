@@ -5,6 +5,7 @@ export interface Service {
   description: string;
   longDescription: string;
   icon: string;
+  image: string;
   features: string[];
   benefits: string[];
   faqs: { question: string; answer: string }[];
@@ -20,6 +21,7 @@ export const services: Service[] = [
     description: "Protect your property investment with comprehensive title insurance coverage that safeguards against ownership disputes and hidden claims.",
     longDescription: "Title insurance is a crucial safeguard for any real estate transaction. At Town & Country Title Guaranty, we provide both owner's and lender's title insurance policies that protect against financial loss from defects in title to real property. Our thorough title searches and comprehensive coverage give you peace of mind knowing your investment is protected.",
     icon: "🛡️",
+    image: "/images/services/title-insurance.jpg",
     features: [
       "Owner's Title Insurance Policies",
       "Lender's Title Insurance Policies",
@@ -59,6 +61,7 @@ export const services: Service[] = [
     description: "Comprehensive title searches to uncover any issues that could affect your property ownership before closing.",
     longDescription: "A thorough title search is the foundation of a secure real estate transaction. Our experienced team examines public records, court filings, and historical documents to identify any liens, encumbrances, or ownership issues that could affect your property rights. We leave no stone unturned in ensuring your title is clear.",
     icon: "🔍",
+    image: "/images/services/title-search.jpg",
     features: [
       "Full Title Examination",
       "Lien Search",
@@ -98,6 +101,7 @@ export const services: Service[] = [
     description: "Professional closing services that ensure smooth, hassle-free real estate transactions from contract to keys.",
     longDescription: "Our closing services provide comprehensive support throughout your real estate transaction. From document preparation to fund disbursement, we handle every detail to ensure a smooth closing experience. We offer flexible scheduling including on-location closings at your convenience.",
     icon: "🏠",
+    image: "/images/services/closing-services.jpg",
     features: [
       "On-Location Closings",
       "Document Preparation",
@@ -137,6 +141,7 @@ export const services: Service[] = [
     description: "Streamlined title services for refinancing transactions with competitive rates and fast turnaround times.",
     longDescription: "Refinancing your home? We provide efficient title services specifically designed for refinance transactions. Our streamlined process ensures quick turnaround times while maintaining the thorough standards that protect your investment.",
     icon: "💰",
+    image: "/images/services/refinancing.jpg",
     features: [
       "Refinance Title Search",
       "Lender's Title Insurance",
@@ -176,6 +181,7 @@ export const services: Service[] = [
     description: "Secure escrow services ensuring safe handling of funds throughout your real estate transaction.",
     longDescription: "As a neutral third party, we provide secure escrow services that protect both buyers and sellers during real estate transactions. Our escrow accounts are fully insured and audited, giving you confidence that your funds are handled with the utmost care and professionalism.",
     icon: "🔐",
+    image: "/images/services/escrow.jpg",
     features: [
       "Earnest Money Deposits",
       "Secure Fund Holding",
@@ -215,6 +221,7 @@ export const services: Service[] = [
     description: "Specialized title services for commercial real estate transactions of all sizes and complexity levels.",
     longDescription: "Commercial real estate transactions require specialized expertise and attention to detail. Our commercial title services team handles everything from small retail spaces to large multi-property portfolios. We understand the unique challenges of commercial transactions and provide tailored solutions to meet your needs.",
     icon: "🏢",
+    image: "/images/services/commercial.jpg",
     features: [
       "Commercial Title Insurance",
       "Complex Transaction Handling",
@@ -254,6 +261,7 @@ export const services: Service[] = [
     description: "Complete title services for home purchases, including single-family homes, condos, and townhomes.",
     longDescription: "Whether you're buying your first home or your fifth, our residential title services ensure a smooth path to homeownership. We handle all aspects of residential transactions including single-family homes, condominiums, townhouses, and vacant land purchases.",
     icon: "🏡",
+    image: "/images/services/residential.jpg",
     features: [
       "Single-Family Home Closings",
       "Condo & Townhome Closings",
@@ -293,6 +301,7 @@ export const services: Service[] = [
     description: "Thorough lien searches to identify any outstanding debts or claims against a property before purchase.",
     longDescription: "A comprehensive lien search is essential to protecting your real estate investment. Our team conducts thorough searches of all relevant records to identify any liens, judgments, or claims that could affect your property ownership. We search municipal records, court filings, and other sources to ensure nothing is missed.",
     icon: "📋",
+    image: "/images/services/lien-search.jpg",
     features: [
       "Municipal Lien Search",
       "Judgment Lien Search",

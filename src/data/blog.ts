@@ -10,6 +10,7 @@ export interface BlogPost {
   readTime: string;
   metaTitle: string;
   metaDescription: string;
+  image: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -17,6 +18,7 @@ export const blogPosts: BlogPost[] = [
     slug: "what-is-title-insurance-complete-guide",
     title: "What Is Title Insurance? A Complete Guide for Florida Homebuyers",
     excerpt: "Understanding title insurance is crucial for protecting your home investment. Learn everything you need to know about title insurance in Florida.",
+    image: "/images/blog/title-insurance-guide.jpg",
     content: `
 ## What Is Title Insurance?
 
@@ -92,6 +94,7 @@ Ready to learn more? Contact Town & Country Title Guaranty for a free title insu
     slug: "owner-vs-lender-title-insurance",
     title: "Owner's vs Lender's Title Insurance: What's the Difference?",
     excerpt: "Confused about the two types of title insurance? Learn the key differences between owner's and lender's title insurance policies.",
+    image: "/images/blog/owner-vs-lender.jpg",
     content: `
 ## Understanding the Two Types of Title Insurance
 
@@ -191,6 +194,7 @@ Contact Town & Country Title Guaranty for a free quote and learn more about prot
     slug: "florida-closing-costs-explained",
     title: "Florida Closing Costs Explained: What Buyers and Sellers Pay",
     excerpt: "Understanding closing costs in Florida can save you money. Learn what fees to expect and who typically pays each one.",
+    image: "/images/blog/closing-costs.jpg",
     content: `
 ## What Are Closing Costs?
 
@@ -294,6 +298,7 @@ At Town & Country Title Guaranty, we provide clear, itemized quotes with no hidd
     slug: "first-time-homebuyer-title-insurance-guide",
     title: "First-Time Homebuyer's Guide to Title Insurance in Florida",
     excerpt: "Buying your first home? Here's everything you need to know about title insurance and the closing process in Florida.",
+    image: "/images/blog/first-time-buyer.jpg",
     content: `
 ## Congratulations, First-Time Homebuyer!
 
@@ -404,6 +409,7 @@ Contact us for a free consultation about your home purchase.
     slug: "how-to-read-title-commitment",
     title: "How to Read and Understand Your Title Commitment",
     excerpt: "Your title commitment contains important information about your property. Learn how to read and understand each section.",
+    image: "/images/blog/title-commitment.jpg",
     content: `
 ## What Is a Title Commitment?
 

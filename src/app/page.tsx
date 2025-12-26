@@ -28,45 +28,53 @@ const trustLogos = [
 // Animated counter hook
 function useCounter(end: number, duration: number = 2000, start: number = 0) {
   const [count, setCount] = useState(start);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (hasAnimated) return;
+
+    const startAnimation = () => {
+      setHasAnimated(true);
+      let startTime: number;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        setCount(Math.floor(easeOutQuart * (end - start) + start));
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
+        if (entry.isIntersecting) {
+          startAnimation();
+          observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
 
+    // Check if already visible on mount (for above-the-fold elements)
     if (ref.current) {
-      observer.observe(ref.current);
+      const rect = ref.current.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isInView) {
+        startAnimation();
+      } else {
+        observer.observe(ref.current);
+      }
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime: number;
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * (end - start) + start));
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [isVisible, end, start, duration]);
+  }, [hasAnimated, end, start, duration]);
 
   return { count, ref };
 }

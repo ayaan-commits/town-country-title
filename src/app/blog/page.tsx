@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { blogPosts } from '@/data/blog';
 import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 
@@ -39,7 +40,15 @@ export default function BlogPage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
-              <article key={post.slug} className="card group">
+              <article key={post.slug} className="card group overflow-hidden">
+                <Link href={`/blog/${post.slug}/`} className="block relative h-48 -mx-6 -mt-6 mb-6 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </Link>
                 <div className="mb-4">
                   <span className="text-sm text-primary-500 font-medium">{post.category}</span>
                 </div>

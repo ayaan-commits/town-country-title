@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { blogPosts, getBlogPostBySlug } from '@/data/blog';
 import { companyInfo } from '@/data/company';
@@ -93,6 +94,19 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Featured Image */}
+      <section className="container-custom -mt-8">
+        <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </section>
 
