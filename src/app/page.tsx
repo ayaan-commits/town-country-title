@@ -315,14 +315,17 @@ export default function HomePage() {
             {/* Wide Card */}
             <Link
               href="/services/"
-              className="group md:col-span-2 bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-6 flex items-center justify-between text-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group md:col-span-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-3xl p-6 flex items-center justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div>
-                <h3 className="text-xl font-bold mb-1">Explore All Services</h3>
-                <p className="text-gray-400">8 specialized services for your needs</p>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🎯</span>
+                <div>
+                  <h3 className="text-xl font-bold mb-1 text-white">Explore All Services</h3>
+                  <p className="text-primary-100">8 specialized services for your needs</p>
+                </div>
               </div>
-              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
-                <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
+                <svg className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
