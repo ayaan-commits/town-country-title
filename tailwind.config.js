@@ -1,0 +1,44 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Brand colors for Town & Country Title
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#1e40af', // Main brand blue
+          600: '#1e3a8a',
+          700: '#1e3a8a',
+          800: '#1e3a8a',
+          900: '#1e3a8a',
+        },
+        secondary: {
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fde047',
+          400: '#facc15',
+          500: '#ca8a04', // Gold accent
+          600: '#a16207',
+          700: '#854d0e',
+          800: '#713f12',
+          900: '#422006',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Georgia', 'serif'],
+      },
+    },
+  },
+  plugins: [],
+}

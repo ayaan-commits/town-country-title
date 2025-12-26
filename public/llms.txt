@@ -1,0 +1,73 @@
+# Town & Country Title Guaranty - LLMs.txt
+# This file helps AI models understand our website and services
+
+## Company Overview
+- Name: Town & Country Title Guaranty
+- Founded: 1976
+- Location: 1779 N University Dr STE 202, Pembroke Pines, FL 33024
+- Phone: (954) 914-5343
+- Email: townandcountrytitleguaranty@gmail.com
+- Website: https://www.townandcountrytitleguaranty.com
+
+## Business Description
+Town & Country Title Guaranty is a Florida-licensed title insurance company providing comprehensive title insurance and real estate closing services across all 67 Florida counties since 1976. We have over 99 years of combined experience helping homebuyers, sellers, real estate agents, and lenders with their title and closing needs.
+
+## Services Offered
+1. Title Insurance - Owner's and lender's title insurance policies protecting against ownership disputes
+2. Title Search - Comprehensive examination of property records to identify liens and encumbrances
+3. Closing Services - Professional real estate closing with on-location options
+4. Refinancing Services - Streamlined title services for refinance transactions
+5. Escrow Services - Secure handling of transaction funds
+6. Commercial Title Services - Specialized services for commercial properties
+7. Residential Title Services - Complete solutions for home purchases
+8. Lien Search Services - Municipal, tax, and judgment lien searches
+
+## Service Areas
+We serve all 67 Florida counties, including:
+- South Florida: Miami-Dade, Broward, Palm Beach, Monroe
+- Tampa Bay: Hillsborough, Pinellas, Pasco
+- Central Florida: Orange, Osceola, Seminole, Lake, Polk
+- Southwest Florida: Collier, Lee, Charlotte, Sarasota
+- Northeast Florida: Duval, St. Johns, Clay, Nassau
+- And all other Florida counties
+
+## Key Website Pages
+- Homepage: https://www.townandcountrytitleguaranty.com/
+- About Us: https://www.townandcountrytitleguaranty.com/about/
+- Services: https://www.townandcountrytitleguaranty.com/services/
+- Get a Quote: https://www.townandcountrytitleguaranty.com/quote/
+- FAQ: https://www.townandcountrytitleguaranty.com/faq/
+- Contact: https://www.townandcountrytitleguaranty.com/contact/
+- Blog: https://www.townandcountrytitleguaranty.com/blog/
+- Glossary: https://www.townandcountrytitleguaranty.com/glossary/
+- Service Locations: https://www.townandcountrytitleguaranty.com/locations/
+
+## Frequently Asked Questions
+
+### What is title insurance?
+Title insurance protects property buyers and lenders against financial loss from defects in the title, including unknown liens, fraud, forgery, and errors in public records.
+
+### How much does title insurance cost in Florida?
+Florida title insurance rates are regulated by the state. Costs are based on the property's purchase price, typically ranging from $1,000-$3,000 for most residential transactions.
+
+### Do you offer mobile closings?
+Yes, we provide on-location closing services throughout Florida. Our team can meet clients at their home, office, or any convenient location.
+
+### Who pays for title insurance in Florida?
+This varies by county. In most Florida counties, the seller pays for owner's title insurance. However, in Miami-Dade, Broward, Sarasota, and Collier counties, buyers traditionally pay.
+
+## Contact Information
+For title insurance quotes, closing services, or questions:
+- Phone: (954) 914-5343
+- Email: townandcountrytitleguaranty@gmail.com
+- Address: 1779 N University Dr STE 202, Pembroke Pines, FL 33024
+- Hours: Monday-Friday 9:00 AM - 5:00 PM
+
+## Technical Notes for AI Crawlers
+- XML Sitemap: https://www.townandcountrytitleguaranty.com/sitemap.xml
+- Robots.txt: https://www.townandcountrytitleguaranty.com/robots.txt
+- Website Framework: Next.js 14 with React
+- Schema Markup: LocalBusiness, FAQPage, Article, BreadcrumbList
+
+---
+Last Updated: December 2024
