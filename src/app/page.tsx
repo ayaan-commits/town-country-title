@@ -293,24 +293,35 @@ export default function HomePage() {
             </Link>
 
             {/* Standard Cards with staggered animations */}
-            {services.slice(1, 5).map((service, index) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}/`}
-                className="group bg-gray-50 hover:bg-white rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-200"
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div>
-                  <span className="text-3xl mb-4 block group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                    {service.shortTitle}
-                  </h3>
-                </div>
-                <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-2 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            ))}
+            {services.slice(1, 5).map((service, index) => {
+              const shortDescriptions: Record<string, string> = {
+                'title-search': 'Thorough examination of property records to ensure clear ownership',
+                'closing-services': 'Smooth, hassle-free closings at your preferred location',
+                'refinancing-services': 'Fast turnaround and competitive rates for refinancing',
+                'escrow-services': 'Secure handling of funds throughout your transaction',
+              };
+              return (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}/`}
+                  className="group bg-gray-50 hover:bg-white rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-blue-200"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div>
+                    <span className="text-3xl mb-3 block group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                      {service.shortTitle}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      {shortDescriptions[service.slug] || service.description.slice(0, 60) + '...'}
+                    </p>
+                  </div>
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-2 transition-all mt-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              );
+            })}
 
             {/* Wide Card */}
             <Link
