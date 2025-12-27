@@ -30,6 +30,7 @@ const navigation = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -235,26 +236,53 @@ export default function Header() {
                   className="animate-fade-in-up"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <Link
-                    href={item.href}
-                    className="block py-3 text-gray-300 hover:text-accent-400 font-medium transition-colors border-b border-dark-800"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <div className="pl-4 border-l-2 border-accent-500/30 ml-2 mb-2">
-                      {item.submenu.map((subitem) => (
-                        <Link
-                          key={subitem.name}
-                          href={subitem.href}
-                          className="block py-2 text-gray-400 hover:text-accent-400 text-sm transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
+                  {item.submenu ? (
+                    <>
+                      <button
+                        className="w-full flex items-center justify-between py-3 text-gray-300 hover:text-accent-400 font-medium transition-colors border-b border-dark-800"
+                        onClick={() => setMobileSubmenuOpen(mobileSubmenuOpen === item.name ? null : item.name)}
+                        aria-expanded={mobileSubmenuOpen === item.name}
+                      >
+                        {item.name}
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-200 ${mobileSubmenuOpen === item.name ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          {subitem.name}
-                        </Link>
-                      ))}
-                    </div>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className={`overflow-hidden transition-all duration-300 ${mobileSubmenuOpen === item.name ? 'max-h-96' : 'max-h-0'}`}>
+                        <div className="pl-4 border-l-2 border-accent-500/30 ml-2 py-2">
+                          <Link
+                            href={item.href}
+                            className="block py-2 text-gray-400 hover:text-accent-400 text-sm transition-colors font-medium"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            All Services
+                          </Link>
+                          {item.submenu.map((subitem) => (
+                            <Link
+                              key={subitem.name}
+                              href={subitem.href}
+                              className="block py-2 text-gray-400 hover:text-accent-400 text-sm transition-colors"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {subitem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="block py-3 text-gray-300 hover:text-accent-400 font-medium transition-colors border-b border-dark-800"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
                   )}
                 </div>
               ))}
