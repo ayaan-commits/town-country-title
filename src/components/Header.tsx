@@ -7,7 +7,20 @@ import { companyInfo } from '@/data/company';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about/' },
-  { name: 'Services', href: '/services/' },
+  {
+    name: 'Services',
+    href: '/services/',
+    submenu: [
+      { name: 'Title Insurance', href: '/services/title-insurance/' },
+      { name: 'Title Search', href: '/services/title-search/' },
+      { name: 'Closing Services', href: '/services/closing-services/' },
+      { name: 'Refinancing', href: '/services/refinancing-services/' },
+      { name: 'Escrow Services', href: '/services/escrow-services/' },
+      { name: 'Commercial Title', href: '/services/commercial-title-services/' },
+      { name: 'Residential Title', href: '/services/residential-title-services/' },
+      { name: 'Lien Search', href: '/services/lien-search-services/' },
+    ]
+  },
   { name: 'Locations', href: '/locations/' },
   { name: 'FAQ', href: '/faq/' },
   { name: 'Blog', href: '/blog/' },
@@ -126,17 +139,6 @@ export default function Header() {
                   aria-expanded={item.submenu ? activeDropdown === item.name : undefined}
                 >
                   {item.name}
-                  {item.submenu && (
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
                 </Link>
 
                 {/* Dropdown menu */}
