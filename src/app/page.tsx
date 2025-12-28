@@ -5,7 +5,8 @@ import { services } from '@/data/services';
 import { companyInfo } from '@/data/company';
 import { floridaCounties } from '@/data/counties';
 import { ServiceIcon } from '@/components/ServiceIcon';
-import { Shield, Clock, MapPin, Users, Check, ArrowRight, Phone, Star } from 'lucide-react';
+import { Shield, Clock, MapPin, Users, Check, ArrowRight, Phone, Star, Calculator } from 'lucide-react';
+import { ClosingCostCalculator } from '@/components/ClosingCostCalculator';
 
 const popularRegions = [
   { name: 'South Florida', counties: ['Miami-Dade', 'Broward', 'Palm Beach'] },
@@ -19,50 +20,59 @@ const affiliations = ['Florida Bar Member', 'ALTA Member', 'BBB Accredited', 'Fi
 export default function HomePage() {
   return (
     <div>
-      {/* Hero Section - Clean, Minimal */}
-      <section className="py-20 lg:py-32 bg-dark-950">
+      {/* Hero Section - With Calculator */}
+      <section className="py-16 lg:py-24 bg-dark-950">
         <div className="container-custom">
-          <div className="max-w-3xl">
-            <p className="text-accent-500 font-medium mb-4">
-              Florida Title Insurance & Closing Services
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left - Content */}
+            <div>
+              <p className="text-accent-500 font-medium mb-4">
+                Florida Title Insurance & Closing Services
+              </p>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
-              Your Florida Title Experts Since 1976
-            </h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                Your Florida Title Experts Since 1976
+              </h1>
 
-            <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-              We handle title insurance and real estate closings across all 67 Florida counties.
-              Straightforward service, transparent pricing, and closings at your location.
-            </p>
+              <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+                We handle title insurance and real estate closings across all 67 Florida counties.
+                Straightforward service, transparent pricing, and closings at your location.
+              </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <Link href="/quote/" className="btn-primary px-8 py-4 text-lg">
-                Get a Free Quote
-              </Link>
-              <a
-                href={`tel:${companyInfo.phone}`}
-                className="btn-secondary px-8 py-4 text-lg inline-flex items-center justify-center gap-2"
-              >
-                <Phone className="w-5 h-5" />
-                {companyInfo.phone}
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <Link href="/calculator/" className="btn-primary px-8 py-4 text-lg inline-flex items-center gap-2">
+                  <Calculator className="w-5 h-5" />
+                  Calculate Closing Costs
+                </Link>
+                <a
+                  href={`tel:${companyInfo.phone}`}
+                  className="btn-secondary px-8 py-4 text-lg inline-flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-5 h-5" />
+                  {companyInfo.phone}
+                </a>
+              </div>
+
+              {/* Simple Stats */}
+              <div className="flex flex-wrap gap-x-12 gap-y-4 pt-8 border-t border-dark-800">
+                <div>
+                  <div className="text-2xl font-bold text-white">49 Years</div>
+                  <div className="text-sm text-gray-500">In Business</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-white">67 Counties</div>
+                  <div className="text-sm text-gray-500">Statewide Coverage</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-white">10,000+</div>
+                  <div className="text-sm text-gray-500">Closings Completed</div>
+                </div>
+              </div>
             </div>
 
-            {/* Simple Stats */}
-            <div className="flex flex-wrap gap-x-12 gap-y-4 pt-8 border-t border-dark-800">
-              <div>
-                <div className="text-2xl font-bold text-white">49 Years</div>
-                <div className="text-sm text-gray-500">In Business</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">67 Counties</div>
-                <div className="text-sm text-gray-500">Statewide Coverage</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white">10,000+</div>
-                <div className="text-sm text-gray-500">Closings Completed</div>
-              </div>
+            {/* Right - Mini Calculator */}
+            <div className="lg:sticky lg:top-32">
+              <ClosingCostCalculator variant="mini" />
             </div>
           </div>
         </div>
