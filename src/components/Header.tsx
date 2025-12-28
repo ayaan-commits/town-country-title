@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { companyInfo } from '@/data/company';
+import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -17,13 +18,10 @@ const navigation = [
       { name: 'Refinancing', href: '/services/refinancing-services/' },
       { name: 'Escrow Services', href: '/services/escrow-services/' },
       { name: 'Commercial Title', href: '/services/commercial-title-services/' },
-      { name: 'Residential Title', href: '/services/residential-title-services/' },
-      { name: 'Lien Search', href: '/services/lien-search-services/' },
     ]
   },
+  { name: 'Calculator', href: '/calculator/' },
   { name: 'Locations', href: '/locations/' },
-  { name: 'FAQ', href: '/faq/' },
-  { name: 'Blog', href: '/blog/' },
   { name: 'Contact', href: '/contact/' },
 ];
 
@@ -31,28 +29,17 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
-  const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll behavior - hide header on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setHidden(true);
-      } else {
-        setHidden(false);
-      }
-
-      setLastScrollY(currentScrollY);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -66,38 +53,36 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-dark-950 border-b border-dark-800 sticky top-0 z-50 transition-transform duration-300 ${
-        hidden ? '-translate-y-full' : 'translate-y-0'
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white shadow-soft'
+          : 'bg-cream'
       }`}
       role="banner"
     >
       {/* Top bar with contact info */}
-      <div className="bg-dark-900 text-gray-400 text-sm py-2 border-b border-dark-800">
+      <div className="bg-primary-900 text-primary-200 text-sm py-2">
         <div className="container-custom flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <a
               href={`tel:${companyInfo.phone}`}
-              className="flex items-center gap-1.5 hover:text-accent-400 transition-colors"
+              className="flex items-center gap-2 hover:text-white transition-colors"
               aria-label={`Call us at ${companyInfo.phone}`}
             >
-              <svg className="w-4 h-4 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
+              <Phone className="w-4 h-4 text-accent-300" />
               <span>{companyInfo.phone}</span>
             </a>
             <a
               href={`mailto:${companyInfo.email}`}
-              className="hidden md:flex items-center gap-1.5 hover:text-accent-400 transition-colors"
+              className="hidden md:flex items-center gap-2 hover:text-white transition-colors"
               aria-label={`Email us at ${companyInfo.email}`}
             >
-              <svg className="w-4 h-4 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Mail className="w-4 h-4 text-accent-300" />
               <span>{companyInfo.email}</span>
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-2">
-            <span className="w-2 h-2 bg-accent-500 rounded-full" aria-hidden="true"></span>
+            <span className="w-2 h-2 bg-sage-300 rounded-full"></span>
             <span>Serving All 67 Florida Counties</span>
           </div>
         </div>
@@ -108,12 +93,12 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Town & Country Title Guaranty - Home">
-            <div className="w-12 h-12 bg-accent-500 rounded-lg flex items-center justify-center text-dark-950 font-bold text-xl">
+            <div className="w-12 h-12 bg-primary-900 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-soft group-hover:bg-primary-800 transition-colors">
               TC
             </div>
             <div className="hidden sm:block">
-              <div className="font-heading text-xl font-bold text-white group-hover:text-accent-400 transition-colors">Town & Country</div>
-              <div className="text-sm text-gray-500">Title Guaranty</div>
+              <div className="font-heading text-xl font-semibold text-primary-900 group-hover:text-accent-500 transition-colors">Town & Country</div>
+              <div className="text-sm text-primary-600">Title Guaranty</div>
             </div>
           </Link>
 
@@ -129,28 +114,28 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="px-4 py-2 text-gray-300 hover:text-white font-medium transition-colors flex items-center gap-1 rounded-lg hover:bg-dark-800"
+                  className="px-4 py-2 text-primary-700 hover:text-primary-900 font-medium transition-colors flex items-center gap-1 rounded-lg hover:bg-primary-50"
                   role="menuitem"
                   aria-haspopup={item.submenu ? 'true' : undefined}
                   aria-expanded={item.submenu ? activeDropdown === item.name : undefined}
                 >
                   {item.name}
+                  {item.submenu && <ChevronDown className="w-4 h-4" />}
                 </Link>
 
                 {/* Dropdown menu */}
                 {item.submenu && activeDropdown === item.name && (
                   <div
-                    className="absolute top-full left-0 mt-1 bg-dark-900 border border-dark-700 shadow-xl rounded-xl py-2 min-w-[220px] animate-fade-in"
+                    className="absolute top-full left-0 mt-1 bg-white border border-primary-100 shadow-elevated rounded-xl py-2 min-w-[220px] animate-fade-in"
                     role="menu"
                     aria-label={`${item.name} submenu`}
                   >
-                    {item.submenu.map((subitem, index) => (
+                    {item.submenu.map((subitem) => (
                       <Link
                         key={subitem.name}
                         href={subitem.href}
-                        className="block px-4 py-2.5 text-gray-300 hover:bg-dark-800 hover:text-accent-400 transition-colors"
+                        className="block px-4 py-2.5 text-primary-700 hover:bg-accent-50 hover:text-accent-600 transition-colors"
                         role="menuitem"
-                        style={{ animationDelay: `${index * 50}ms` }}
                       >
                         {subitem.name}
                       </Link>
@@ -162,7 +147,7 @@ export default function Header() {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
             <Link href="/quote/" className="btn-primary">
               Get Free Quote
             </Link>
@@ -170,28 +155,23 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 text-gray-300 hover:text-white hover:bg-dark-800 rounded-lg transition-colors"
+            className="lg:hidden p-2 text-primary-700 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
           >
-            <span className="sr-only">{mobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
             {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-6 h-6" />
             ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <Menu className="w-6 h-6" />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation Overlay */}
         <div
-          className={`lg:hidden fixed inset-0 bg-dark-950/90 z-40 transition-opacity duration-300 ${
+          className={`lg:hidden fixed inset-0 bg-primary-900/50 z-40 transition-opacity duration-300 ${
             mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
           onClick={() => setMobileMenuOpen(false)}
@@ -201,7 +181,7 @@ export default function Header() {
         {/* Mobile Navigation Panel */}
         <div
           id="mobile-menu"
-          className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-dark-900 z-50 transform transition-transform duration-300 ease-out shadow-2xl ${
+          className={`lg:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 transform transition-transform duration-300 ease-out shadow-elevated ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           role="dialog"
@@ -209,50 +189,37 @@ export default function Header() {
           aria-label="Mobile navigation"
         >
           {/* Mobile menu header */}
-          <div className="flex items-center justify-between p-4 border-b border-dark-700">
-            <span className="font-heading text-lg font-bold text-white">Menu</span>
+          <div className="flex items-center justify-between p-4 border-b border-primary-100">
+            <span className="font-heading text-lg font-semibold text-primary-900">Menu</span>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-gray-400 hover:text-white hover:bg-dark-800 rounded-lg transition-colors"
+              className="p-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors"
               aria-label="Close menu"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-6 h-6" />
             </button>
           </div>
 
           {/* Mobile menu content */}
           <div className="p-4 overflow-y-auto h-[calc(100%-80px)]">
             <nav role="navigation" aria-label="Mobile navigation">
-              {navigation.map((item, index) => (
-                <div
-                  key={item.name}
-                  className="animate-fade-in-up"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
+              {navigation.map((item) => (
+                <div key={item.name}>
                   {item.submenu ? (
                     <>
                       <button
-                        className="w-full flex items-center justify-between py-3 text-gray-300 hover:text-accent-400 font-medium transition-colors border-b border-dark-800"
+                        className="w-full flex items-center justify-between py-3 text-primary-700 hover:text-accent-500 font-medium transition-colors border-b border-primary-100"
                         onClick={() => setMobileSubmenuOpen(mobileSubmenuOpen === item.name ? null : item.name)}
                         aria-expanded={mobileSubmenuOpen === item.name}
                       >
                         {item.name}
-                        <svg
-                          className={`w-4 h-4 transition-transform duration-200 ${mobileSubmenuOpen === item.name ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileSubmenuOpen === item.name ? 'rotate-180' : ''}`} />
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ${mobileSubmenuOpen === item.name ? 'max-h-96' : 'max-h-0'}`}>
-                        <div className="pl-4 border-l-2 border-accent-500/30 ml-2 py-2">
+                        <div className="pl-4 border-l-2 border-accent-200 ml-2 py-2">
                           <Link
                             href={item.href}
-                            className="block py-2 text-gray-400 hover:text-accent-400 text-sm transition-colors font-medium"
+                            className="block py-2 text-primary-600 hover:text-accent-500 text-sm transition-colors font-medium"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             All Services
@@ -261,7 +228,7 @@ export default function Header() {
                             <Link
                               key={subitem.name}
                               href={subitem.href}
-                              className="block py-2 text-gray-400 hover:text-accent-400 text-sm transition-colors"
+                              className="block py-2 text-primary-600 hover:text-accent-500 text-sm transition-colors"
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               {subitem.name}
@@ -273,7 +240,7 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block py-3 text-gray-300 hover:text-accent-400 font-medium transition-colors border-b border-dark-800"
+                      className="block py-3 text-primary-700 hover:text-accent-500 font-medium transition-colors border-b border-primary-100"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -284,7 +251,7 @@ export default function Header() {
             </nav>
 
             {/* Mobile CTA */}
-            <div className="mt-6 pt-6 border-t border-dark-700">
+            <div className="mt-6 pt-6 border-t border-primary-100">
               <Link
                 href="/quote/"
                 className="btn-primary w-full text-center"
@@ -297,20 +264,16 @@ export default function Header() {
               <div className="mt-6 space-y-3">
                 <a
                   href={`tel:${companyInfo.phone}`}
-                  className="flex items-center gap-3 text-gray-400 hover:text-accent-400 transition-colors"
+                  className="flex items-center gap-3 text-primary-600 hover:text-accent-500 transition-colors"
                 >
-                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+                  <Phone className="w-5 h-5 text-accent-400" />
                   {companyInfo.phone}
                 </a>
                 <a
                   href={`mailto:${companyInfo.email}`}
-                  className="flex items-center gap-3 text-gray-400 hover:text-accent-400 transition-colors"
+                  className="flex items-center gap-3 text-primary-600 hover:text-accent-500 transition-colors"
                 >
-                  <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
+                  <Mail className="w-5 h-5 text-accent-400" />
                   {companyInfo.email}
                 </a>
               </div>

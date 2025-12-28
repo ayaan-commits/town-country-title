@@ -1,5 +1,71 @@
 import { companyInfo } from '@/data/company';
 
+// Organization Schema - for company-wide SEO
+export function OrganizationSchema() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${companyInfo.url}/#organization`,
+    name: companyInfo.name,
+    legalName: companyInfo.legalName,
+    url: companyInfo.url,
+    logo: `${companyInfo.url}/images/logos/logo.svg`,
+    description: companyInfo.description,
+    foundingDate: companyInfo.founded.toString(),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${companyInfo.address.street} ${companyInfo.address.suite}`,
+      addressLocality: companyInfo.address.city,
+      addressRegion: companyInfo.address.state,
+      postalCode: companyInfo.address.zip,
+      addressCountry: 'US'
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: companyInfo.phone,
+      contactType: 'customer service',
+      email: companyInfo.email,
+      areaServed: 'US',
+      availableLanguage: ['English', 'Spanish']
+    },
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      minValue: 5,
+      maxValue: 20
+    },
+    areaServed: {
+      '@type': 'State',
+      name: 'Florida',
+      containedInPlace: {
+        '@type': 'Country',
+        name: 'United States'
+      }
+    },
+    knowsAbout: [
+      'Title Insurance',
+      'Real Estate Closings',
+      'Title Search',
+      'Escrow Services',
+      'Refinancing',
+      'Commercial Title Services',
+      'Mobile Closings',
+      'Florida Real Estate Law'
+    ],
+    sameAs: [
+      companyInfo.social.facebook,
+      companyInfo.social.linkedin,
+      companyInfo.social.google
+    ].filter(Boolean)
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 interface LocalBusinessSchemaProps {
   pageType?: 'home' | 'service' | 'location' | 'article';
   serviceName?: string;
@@ -16,7 +82,7 @@ interface LocalBusinessSchemaProps {
 export function LocalBusinessSchema({ pageType = 'home', serviceName, locationName }: LocalBusinessSchemaProps) {
   const baseSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'InsuranceAgency',
     '@id': `${companyInfo.url}/#organization`,
     name: companyInfo.name,
     legalName: companyInfo.legalName,

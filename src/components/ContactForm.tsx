@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { CheckCircle, Send, Loader2 } from 'lucide-react';
 
 // Web3Forms Access Key - Get yours at https://web3forms.com
 const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE';
@@ -42,16 +43,14 @@ export default function ContactForm() {
 
   if (submitStatus === 'success') {
     return (
-      <div className="bg-dark-900 rounded-2xl border border-dark-700 p-8 text-center">
-        <div className="w-16 h-16 bg-accent-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
+      <div className="bg-sage-50 rounded-xl border border-sage-200 p-8 text-center">
+        <div className="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-8 h-8 text-sage-500" />
         </div>
-        <h2 className="text-2xl font-heading font-bold text-white mb-2">
+        <h2 className="text-2xl font-heading font-bold text-primary-900 mb-2">
           Message Sent!
         </h2>
-        <p className="text-gray-400 mb-6">
+        <p className="text-primary-600 mb-6">
           Thank you for reaching out. We&apos;ll get back to you within 24 hours.
         </p>
         <button
@@ -66,25 +65,21 @@ export default function ContactForm() {
 
   return (
     <div>
-      <h2 className="text-2xl font-heading font-bold text-white mb-6">
-        Send Us a Message
-      </h2>
-
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-          <p className="text-red-400 text-sm">
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-600 text-sm">
             Something went wrong. Please try again or call us directly.
           </p>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5">
         {/* Honeypot for spam protection */}
         <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="label-dark">
+            <label htmlFor="firstName" className="label-light">
               First Name *
             </label>
             <input
@@ -92,11 +87,11 @@ export default function ContactForm() {
               id="firstName"
               name="firstName"
               required
-              className="input-dark"
+              className="input-light"
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="label-dark">
+            <label htmlFor="lastName" className="label-light">
               Last Name *
             </label>
             <input
@@ -104,13 +99,13 @@ export default function ContactForm() {
               id="lastName"
               name="lastName"
               required
-              className="input-dark"
+              className="input-light"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="label-dark">
+          <label htmlFor="email" className="label-light">
             Email Address *
           </label>
           <input
@@ -118,31 +113,31 @@ export default function ContactForm() {
             id="email"
             name="email"
             required
-            className="input-dark"
+            className="input-light"
           />
         </div>
 
         <div>
-          <label htmlFor="phone" className="label-dark">
+          <label htmlFor="phone" className="label-light">
             Phone Number
           </label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            className="input-dark"
+            className="input-light"
           />
         </div>
 
         <div>
-          <label htmlFor="subject" className="label-dark">
+          <label htmlFor="subject" className="label-light">
             Subject *
           </label>
           <select
             id="subject"
             name="subject"
             required
-            className="input-dark"
+            className="input-light"
           >
             <option value="">Select a subject</option>
             <option value="Request a Quote">Request a Quote</option>
@@ -154,7 +149,7 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="label-dark">
+          <label htmlFor="message" className="label-light">
             Message *
           </label>
           <textarea
@@ -162,7 +157,7 @@ export default function ContactForm() {
             name="message"
             rows={5}
             required
-            className="input-dark"
+            className="input-light"
             placeholder="How can we help you?"
           ></textarea>
         </div>
@@ -170,18 +165,18 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary btn-glow w-full disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
+              <Loader2 className="w-5 h-5 animate-spin" />
               Sending...
             </span>
           ) : (
-            'Send Message'
+            <span className="flex items-center justify-center gap-2">
+              <Send className="w-5 h-5" />
+              Send Message
+            </span>
           )}
         </button>
       </form>

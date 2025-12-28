@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { companyInfo } from '@/data/company';
 import { services } from '@/data/services';
+import { MapPin, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
 
 const popularCounties = [
   { name: 'Miami-Dade County', href: '/locations/miami-dade-county/' },
@@ -15,63 +16,63 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark-950 text-gray-300 border-t border-dark-800">
+    <footer className="bg-primary-900 text-primary-200" role="contentinfo">
       {/* Main Footer */}
       <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center text-dark-950 font-bold text-xl shadow-glow">
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-accent-400 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-soft">
                 TC
               </div>
               <div>
-                <div className="font-heading text-xl font-bold text-white">Town & Country</div>
-                <div className="text-sm text-gray-500">Title Guaranty</div>
+                <div className="font-heading text-xl font-semibold text-white">Town & Country</div>
+                <div className="text-sm text-primary-300">Title Guaranty</div>
               </div>
             </div>
-            <p className="text-gray-400 mb-4">
+            <p className="text-primary-300 mb-6 leading-relaxed">
               Florida&apos;s trusted title insurance and closing services company since {companyInfo.founded}.
               Over 99 years of combined experience serving all 67 Florida counties.
             </p>
-            <div className="space-y-2">
-              <p className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                {companyInfo.address.full}
-              </p>
-              <p className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <a href={`tel:${companyInfo.phone}`} className="hover:text-accent-400 transition-colors">
-                  {companyInfo.phone}
-                </a>
-              </p>
-              <p className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-accent-400 transition-colors">
-                  {companyInfo.email}
-                </a>
-              </p>
+            <div className="space-y-3">
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(companyInfo.address.full)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 text-primary-300 hover:text-white transition-colors group"
+              >
+                <MapPin className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                <span className="group-hover:underline">{companyInfo.address.full}</span>
+              </a>
+              <a
+                href={`tel:${companyInfo.phone}`}
+                className="flex items-center gap-3 text-primary-300 hover:text-white transition-colors"
+              >
+                <Phone className="w-5 h-5 text-accent-400 flex-shrink-0" />
+                {companyInfo.phone}
+              </a>
+              <a
+                href={`mailto:${companyInfo.email}`}
+                className="flex items-center gap-3 text-primary-300 hover:text-white transition-colors"
+              >
+                <Mail className="w-5 h-5 text-accent-400 flex-shrink-0" />
+                {companyInfo.email}
+              </a>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-heading text-lg font-bold text-white mb-4">Our Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-heading text-lg font-semibold text-white mb-6">Our Services</h3>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}/`}
-                    className="hover:text-accent-400 transition-colors"
+                    className="text-primary-300 hover:text-white transition-colors inline-flex items-center gap-1 group"
                   >
-                    {service.shortTitle}
+                    <span>{service.shortTitle}</span>
                   </Link>
                 </li>
               ))}
@@ -80,61 +81,95 @@ export default function Footer() {
 
           {/* Service Areas */}
           <div>
-            <h3 className="font-heading text-lg font-bold text-white mb-4">Service Areas</h3>
-            <ul className="space-y-2">
+            <h3 className="font-heading text-lg font-semibold text-white mb-6">Service Areas</h3>
+            <ul className="space-y-3">
               {popularCounties.map((county) => (
                 <li key={county.name}>
                   <Link
                     href={county.href}
-                    className="hover:text-accent-400 transition-colors"
+                    className="text-primary-300 hover:text-white transition-colors"
                   >
                     {county.name}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/locations/" className="text-accent-400 hover:text-accent-300 font-medium">
-                  View All 67 Counties →
+              <li className="pt-2">
+                <Link
+                  href="/locations/"
+                  className="text-accent-400 hover:text-accent-300 font-medium inline-flex items-center gap-1"
+                >
+                  View All 67 Counties <ArrowRight className="w-4 h-4" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links & Hours */}
           <div>
-            <h3 className="font-heading text-lg font-bold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link href="/about/" className="hover:text-accent-400 transition-colors">About Us</Link></li>
-              <li><Link href="/quote/" className="hover:text-accent-400 transition-colors">Get a Quote</Link></li>
-              <li><Link href="/faq/" className="hover:text-accent-400 transition-colors">FAQ</Link></li>
-              <li><Link href="/blog/" className="hover:text-accent-400 transition-colors">Blog</Link></li>
-              <li><Link href="/contact/" className="hover:text-accent-400 transition-colors">Contact Us</Link></li>
-              <li><Link href="/glossary/" className="hover:text-accent-400 transition-colors">Glossary</Link></li>
-              <li><Link href="/privacy-policy/" className="hover:text-accent-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms-of-service/" className="hover:text-accent-400 transition-colors">Terms of Service</Link></li>
+            <h3 className="font-heading text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              <li><Link href="/about/" className="text-primary-300 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/quote/" className="text-primary-300 hover:text-white transition-colors">Get a Quote</Link></li>
+              <li><Link href="/calculator/" className="text-primary-300 hover:text-white transition-colors">Cost Calculator</Link></li>
+              <li><Link href="/order/" className="text-primary-300 hover:text-white transition-colors">Order Online</Link></li>
+              <li><Link href="/faq/" className="text-primary-300 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/contact/" className="text-primary-300 hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/glossary/" className="text-primary-300 hover:text-white transition-colors">Glossary</Link></li>
             </ul>
 
             {/* Business Hours */}
-            <div className="mt-6">
-              <h4 className="font-medium text-white mb-2">Business Hours</h4>
-              <p className="text-sm text-gray-400">{companyInfo.hours.weekdays}</p>
-              <p className="text-sm text-gray-400">{companyInfo.hours.saturday}</p>
-              <p className="text-sm text-gray-400">{companyInfo.hours.sunday}</p>
+            <div className="mt-8 p-4 bg-primary-800/50 rounded-xl">
+              <div className="flex items-center gap-2 mb-3">
+                <Clock className="w-5 h-5 text-accent-400" />
+                <h4 className="font-medium text-white">Business Hours</h4>
+              </div>
+              <div className="space-y-1 text-sm text-primary-300">
+                <p>{companyInfo.hours.weekdays}</p>
+                <p>{companyInfo.hours.saturday}</p>
+                <p>{companyInfo.hours.sunday}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="mt-12 pt-8 border-t border-primary-800">
+          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-primary-400">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-sage-400 rounded-full"></div>
+              <span>Licensed Florida Title Agency</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-sage-400 rounded-full"></div>
+              <span>Member of FLTA</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-sage-400 rounded-full"></div>
+              <span>BBB Accredited</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-sage-400 rounded-full"></div>
+              <span>E&O Insured</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-dark-800">
+      <div className="border-t border-primary-800 bg-primary-950">
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-primary-400">
               © {currentYear} {companyInfo.name}. All rights reserved.
             </p>
-            <p className="text-sm text-gray-500">
-              Licensed Title Insurance Agency | Serving Florida Since {companyInfo.founded}
-            </p>
+            <div className="flex items-center gap-6 text-sm text-primary-400">
+              <Link href="/privacy-policy/" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-of-service/" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

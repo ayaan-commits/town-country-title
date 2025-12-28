@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import { LocalBusinessSchema, WebsiteSchema } from '@/components/SchemaMarkup';
+import { OrganizationSchema, LocalBusinessSchema, WebsiteSchema } from '@/components/SchemaMarkup';
 import { companyInfo } from '@/data/company';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(companyInfo.url),
@@ -72,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <head>
         {/* Preconnect for external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,9 +82,10 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/images/logos/logo-square.svg" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="theme-color" content="#1a365d" />
 
-        {/* Schema markup */}
+        {/* Schema markup for SEO */}
+        <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
       </head>
