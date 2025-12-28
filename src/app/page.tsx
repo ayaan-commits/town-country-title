@@ -72,7 +72,7 @@ export default function HomePage() {
       <section className="py-6 bg-dark-900 border-y border-dark-800 overflow-hidden">
         <div className="flex animate-marquee">
           {[...affiliations, ...affiliations].map((name, index) => (
-            <span key={index} className="text-sm text-gray-500 whitespace-nowrap px-8">
+            <span key={index} className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-300 whitespace-nowrap px-8">
               {name}
             </span>
           ))}
