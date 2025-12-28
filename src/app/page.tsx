@@ -68,16 +68,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Affiliations - Static, Simple */}
-      <section className="py-6 bg-dark-900 border-y border-dark-800">
-        <div className="container-custom">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            {affiliations.map((name) => (
-              <span key={name} className="text-sm text-gray-500">
-                {name}
-              </span>
-            ))}
-          </div>
+      {/* Affiliations - Scrolling Marquee */}
+      <section className="py-6 bg-dark-900 border-y border-dark-800 overflow-hidden">
+        <div className="flex animate-marquee">
+          {[...affiliations, ...affiliations].map((name, index) => (
+            <span key={index} className="text-sm text-gray-500 whitespace-nowrap px-8">
+              {name}
+            </span>
+          ))}
         </div>
       </section>
 
