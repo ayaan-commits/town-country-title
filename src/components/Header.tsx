@@ -31,19 +31,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Handle scroll behavior - hide/show header
+  // Handle scroll behavior - hide header on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Add scrolled state for shadow
-      setScrolled(currentScrollY > 10);
-
-      // Hide header on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setHidden(true);
       } else {
@@ -71,9 +66,9 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-dark-950/95 backdrop-blur-lg border-b border-dark-800 sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'shadow-lg shadow-dark-950/50' : ''
-      } ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
+      className={`bg-dark-950 border-b border-dark-800 sticky top-0 z-50 transition-transform duration-300 ${
+        hidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
       role="banner"
     >
       {/* Top bar with contact info */}
@@ -82,7 +77,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <a
               href={`tel:${companyInfo.phone}`}
-              className="flex items-center gap-1.5 hover:text-accent-400 transition-colors icon-bounce"
+              className="flex items-center gap-1.5 hover:text-accent-400 transition-colors"
               aria-label={`Call us at ${companyInfo.phone}`}
             >
               <svg className="w-4 h-4 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -92,7 +87,7 @@ export default function Header() {
             </a>
             <a
               href={`mailto:${companyInfo.email}`}
-              className="hidden md:flex items-center gap-1.5 hover:text-accent-400 transition-colors icon-bounce"
+              className="hidden md:flex items-center gap-1.5 hover:text-accent-400 transition-colors"
               aria-label={`Email us at ${companyInfo.email}`}
             >
               <svg className="w-4 h-4 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -102,7 +97,7 @@ export default function Header() {
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-2">
-            <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" aria-hidden="true"></span>
+            <span className="w-2 h-2 bg-accent-500 rounded-full" aria-hidden="true"></span>
             <span>Serving All 67 Florida Counties</span>
           </div>
         </div>
@@ -113,7 +108,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Town & Country Title Guaranty - Home">
-            <div className="w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center text-dark-950 font-bold text-xl shadow-glow group-hover:shadow-glow-lg transition-all duration-300 group-hover:scale-105">
+            <div className="w-12 h-12 bg-accent-500 rounded-lg flex items-center justify-center text-dark-950 font-bold text-xl">
               TC
             </div>
             <div className="hidden sm:block">
@@ -134,7 +129,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="px-4 py-2 text-gray-300 hover:text-white font-medium transition-colors flex items-center gap-1 rounded-lg hover:bg-dark-800 link-underline"
+                  className="px-4 py-2 text-gray-300 hover:text-white font-medium transition-colors flex items-center gap-1 rounded-lg hover:bg-dark-800"
                   role="menuitem"
                   aria-haspopup={item.submenu ? 'true' : undefined}
                   aria-expanded={item.submenu ? activeDropdown === item.name : undefined}
@@ -168,7 +163,7 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Link href="/quote/" className="btn-primary btn-glow ripple">
+            <Link href="/quote/" className="btn-primary">
               Get Free Quote
             </Link>
           </div>
@@ -196,7 +191,7 @@ export default function Header() {
 
         {/* Mobile Navigation Overlay */}
         <div
-          className={`lg:hidden fixed inset-0 bg-dark-950/80 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+          className={`lg:hidden fixed inset-0 bg-dark-950/90 z-40 transition-opacity duration-300 ${
             mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
           onClick={() => setMobileMenuOpen(false)}
