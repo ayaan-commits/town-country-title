@@ -158,9 +158,18 @@ export default function HomePage() {
                 href="/services/title-insurance/"
                 className="group block bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-300"
               >
-                <div className="aspect-[16/9] bg-primary-100 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Shield className="w-24 h-24 text-primary-300" />
+                <div className="aspect-[16/9] bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 relative overflow-hidden">
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent-400/20 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary-600/30 rounded-full blur-2xl" />
+
+                  {/* Content */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                    <div className="w-20 h-20 bg-accent-400 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                      <Shield className="w-10 h-10 text-white" />
+                    </div>
+                    <h4 className="text-white text-xl font-heading font-semibold mb-2">Protect Your Investment</h4>
+                    <p className="text-primary-200 text-sm max-w-xs">One-time premium. Lifetime protection.</p>
                   </div>
                 </div>
                 <div className="p-8">
