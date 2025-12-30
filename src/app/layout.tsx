@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import MobileCTABar from '@/components/MobileCTABar';
 import { OrganizationSchema, LocalBusinessSchema, WebsiteSchema } from '@/components/SchemaMarkup';
 import { companyInfo } from '@/data/company';
 
@@ -101,6 +102,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BackToTop />
+        <MobileCTABar />
       </body>
     </html>
   );

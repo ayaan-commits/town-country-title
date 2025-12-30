@@ -19,6 +19,7 @@ export function ClosingCostCalculator({ variant = 'full', onCalculate }: Closing
   const [estimate, setEstimate] = useState<ClosingCostEstimate | null>(null);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -38,15 +39,21 @@ export function ClosingCostCalculator({ variant = 'full', onCalculate }: Closing
     return parseInt(value.replace(/[^0-9]/g, '')) || 0;
   };
 
-  const handleCalculate = () => {
+  const handleCalculate = async () => {
     const price = parseInputValue(purchasePrice);
     const loan = parseInputValue(loanAmount);
 
     if (price <= 0) return;
 
+    setIsCalculating(true);
+
+    // Simulate brief loading for better UX
+    await new Promise(resolve => setTimeout(resolve, 400));
+
     const result = calculateClosingCosts(price, loan, transactionType === 'refinance');
     setEstimate(result);
     setShowLeadForm(true);
+    setIsCalculating(false);
     onCalculate?.(result);
   };
 
@@ -101,9 +108,20 @@ export function ClosingCostCalculator({ variant = 'full', onCalculate }: Closing
 
           <button
             onClick={handleCalculate}
-            className="btn-primary w-full"
+            disabled={isCalculating || !purchasePrice}
+            className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Get Instant Estimate
+            {isCalculating ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                Calculating...
+              </span>
+            ) : (
+              'Get Instant Estimate'
+            )}
           </button>
 
           {estimate && (
@@ -238,10 +256,20 @@ export function ClosingCostCalculator({ variant = 'full', onCalculate }: Closing
 
             <button
               onClick={handleCalculate}
-              disabled={!purchasePrice}
+              disabled={isCalculating || !purchasePrice}
               className="btn-primary w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Calculate Closing Costs
+              {isCalculating ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Calculating...
+                </span>
+              ) : (
+                'Calculate Closing Costs'
+              )}
             </button>
           </div>
 

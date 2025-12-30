@@ -1,12 +1,21 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { services } from '@/data/services';
 import { companyInfo } from '@/data/company';
 import { floridaCounties } from '@/data/counties';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { Shield, Clock, MapPin, Users, Check, ArrowRight, Phone, Star, Calculator, Car, FileCheck, Award } from 'lucide-react';
 import { ClosingCostCalculator } from '@/components/ClosingCostCalculator';
+
+// Avatar images for social proof
+const avatars = [
+  { src: 'https://i.pravatar.cc/100?img=1', alt: 'Maria R.' },
+  { src: 'https://i.pravatar.cc/100?img=12', alt: 'Robert T.' },
+  { src: 'https://i.pravatar.cc/100?img=8', alt: 'James K.' },
+  { src: 'https://i.pravatar.cc/100?img=5', alt: 'Sarah D.' },
+];
 
 const popularRegions = [
   { name: 'South Florida', counties: ['Miami-Dade', 'Broward', 'Palm Beach'] },
@@ -66,13 +75,14 @@ export default function HomePage() {
               {/* Social Proof - Specific */}
               <div className="flex items-center gap-4 pt-6 border-t border-primary-200">
                 <div className="flex -space-x-2">
-                  {['M', 'R', 'J', 'S'].map((initial, i) => (
-                    <div
+                  {avatars.map((avatar, i) => (
+                    <img
                       key={i}
-                      className="w-10 h-10 rounded-full bg-primary-100 border-2 border-white flex items-center justify-center text-sm font-medium text-primary-700"
-                    >
-                      {initial}
-                    </div>
+                      src={avatar.src}
+                      alt={avatar.alt}
+                      className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                      loading="lazy"
+                    />
                   ))}
                 </div>
                 <div>
@@ -380,9 +390,12 @@ export default function HomePage() {
               </blockquote>
 
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-primary-200 rounded-full flex items-center justify-center text-xl font-bold text-primary-700">
-                  MR
-                </div>
+                <img
+                  src="https://i.pravatar.cc/100?img=47"
+                  alt="Maria & Carlos Rodriguez"
+                  className="w-14 h-14 rounded-full object-cover"
+                  loading="lazy"
+                />
                 <div>
                   <div className="font-semibold text-primary-900">Maria & Carlos Rodriguez</div>
                   <div className="text-primary-500">First-time homebuyers, Miami-Dade County</div>

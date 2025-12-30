@@ -1,18 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">
   <defs>
     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#1a365d"/>
+      <stop offset="100%" style="stop-color:#2c5282"/>
     </linearGradient>
   </defs>
-  <!-- Shield/House Icon -->
-  <path d="M10 20 L25 8 L40 20 L40 45 L10 45 Z" fill="url(#logoGradient)" stroke="#1e3a8a" stroke-width="1"/>
-  <path d="M18 45 L18 30 L32 30 L32 45" fill="white" stroke="#1e3a8a" stroke-width="1"/>
-  <rect x="22" y="35" width="6" height="10" fill="#1e40af"/>
-  <!-- TC Letters -->
-  <text x="50" y="35" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#1e40af">T</text>
-  <text x="68" y="35" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#f59e0b">C</text>
-  <!-- Company Name -->
-  <text x="95" y="25" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e3a8a">Town &amp; Country</text>
-  <text x="95" y="40" font-family="Arial, sans-serif" font-size="11" fill="#64748b">Title Guaranty</text>
+  <!-- Icon - House with Shield -->
+  <g transform="translate(0, 5)">
+    <!-- House shape -->
+    <path d="M25 8L5 24v24h40V24L25 8z" fill="#1a365d"/>
+    <!-- Roof accent -->
+    <path d="M25 8L5 24h40L25 8z" fill="#ed8936"/>
+    <!-- Shield inside house -->
+    <path d="M25 22c-6 0-10 4-10 4v12s4 6 10 8c6-2 10-8 10-8V26s-4-4-10-4z" fill="#fff" opacity="0.9"/>
+    <path d="M25 24c-5 0-8 3-8 3v10s3 5 8 6c5-1 8-6 8-6V27s-3-3-8-3z" fill="#ed8936" opacity="0.3"/>
+    <!-- Checkmark in shield -->
+    <path d="M21 33l3 3 6-6" stroke="#1a365d" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Text -->
+  <g font-family="Georgia, serif">
+    <!-- Town & Country -->
+    <text x="58" y="28" font-size="20" font-weight="600" fill="#1a365d">Town &amp; Country</text>
+    <!-- Title Guaranty -->
+    <text x="58" y="48" font-size="14" fill="#486581">Title Guaranty</text>
+  </g>
 </svg>

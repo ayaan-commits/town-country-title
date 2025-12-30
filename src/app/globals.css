@@ -329,11 +329,43 @@ textarea:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
-/* Mobile CTA bar */
+/* Mobile optimizations - prevent iOS zoom on input focus */
 @media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Minimum touch target size (44x44px) */
+  a, button {
+    min-height: 44px;
+  }
+
+  /* Body padding for sticky CTA bar */
+  body {
+    padding-bottom: 80px;
+  }
+
+  /* Hero H1 mobile sizing */
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Mobile CTA bar */
+.mobile-cta-bar {
+  @apply fixed bottom-0 left-0 right-0 p-3 bg-white z-50;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  border-top: 1px solid #e2e8f0;
+}
+
+@media (min-width: 769px) {
   .mobile-cta-bar {
-    @apply fixed bottom-0 left-0 right-0 p-4 bg-white shadow-elevated z-50;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  body {
+    padding-bottom: 0;
   }
 }
 

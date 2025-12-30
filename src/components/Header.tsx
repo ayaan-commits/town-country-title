@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { companyInfo } from '@/data/company';
 import { Phone, Mail, Menu, X, ChevronDown } from 'lucide-react';
@@ -93,9 +94,14 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group" aria-label="Town & Country Title Guaranty - Home">
-            <div className="w-12 h-12 bg-primary-900 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-soft group-hover:bg-primary-800 transition-colors">
-              TC
-            </div>
+            <Image
+              src="/images/logos/logo-icon.svg"
+              alt="Town & Country Title Guaranty"
+              width={48}
+              height={48}
+              className="w-12 h-12 rounded-xl shadow-soft"
+              priority
+            />
             <div className="hidden sm:block">
               <div className="font-heading text-xl font-semibold text-primary-900 group-hover:text-accent-500 transition-colors">Town & Country</div>
               <div className="text-sm text-primary-600">Title Guaranty</div>

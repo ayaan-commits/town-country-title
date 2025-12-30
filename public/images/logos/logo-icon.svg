@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <!-- House shape -->
+  <path d="M25 5L3 22v25h44V22L25 5z" fill="#1a365d"/>
+  <!-- Roof accent -->
+  <path d="M25 5L3 22h44L25 5z" fill="#ed8936"/>
+  <!-- Shield inside house -->
+  <path d="M25 18c-8 0-12 5-12 5v14s5 7 12 9c7-2 12-9 12-9V23s-4-5-12-5z" fill="#fff" opacity="0.95"/>
+  <path d="M25 20c-6 0-10 4-10 4v12s4 6 10 7c6-1 10-7 10-7V24s-4-4-10-4z" fill="#ed8936" opacity="0.25"/>
+  <!-- Checkmark in shield -->
+  <path d="M19 32l4 4 8-8" stroke="#1a365d" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
